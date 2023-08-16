@@ -8,8 +8,6 @@ namespace LangBuddy.Accounts.Database
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            //"Server=localhost;Port=6789;Database=MiniChatDataBase;Username=postgres;Password=123456"
-
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<AccountsDbContext>(options =>
