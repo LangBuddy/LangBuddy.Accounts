@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LangBuddy.Accounts.Database.Entity
+namespace LangBuddy.Accounts.Database.Entity.Common
 {
-    internal abstract class EntityBase
+    public abstract class EntityBase
     {
         public long Id { get; set; }
         public DateTime CreateDate { get; set; }
