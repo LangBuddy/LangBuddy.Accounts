@@ -6,22 +6,17 @@ namespace LangBuddy.Accounts.Service.Account.Commands
     public class DeleteAccountByIdCommand: IDeleteAccountByIdCommand
     {
         private readonly AccountsDbContext _accountsDbContext;
-        private readonly IGetAccountByIdCommand _getAccountByIdCommand;
+        private readonly ICheckingIdCommand _checkingIdCommand;
         public DeleteAccountByIdCommand(AccountsDbContext accountsDbContext,
-            IGetAccountByIdCommand getAccountByIdCommand) 
+            ICheckingIdCommand checkingIdCommand) 
         {
             _accountsDbContext = accountsDbContext;
-            _getAccountByIdCommand = getAccountByIdCommand;
+            _checkingIdCommand = checkingIdCommand;
         }
 
         public async Task<int> Invoke(long id)
         {
-            var account = await _getAccountByIdCommand.Invoke(id);
-
-            if(account == null)
-            {
-                throw new ArgumentNullException("The account was not found");
-            }
+            var account = await _checkingIdCommand.Invoke(id);
 
             account.SeDeleteTime();
 
