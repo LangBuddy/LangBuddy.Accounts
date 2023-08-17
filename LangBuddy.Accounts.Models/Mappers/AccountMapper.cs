@@ -1,14 +1,10 @@
 ﻿using LangBuddy.Accounts.Database.Entity;
 using LangBuddy.Accounts.Models.Request;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mapster;
 
 namespace LangBuddy.Accounts.Models.Mappers
 {
-    public class AccountMapper
+    public static class AccountMapper
     {
         public static Account ToModel(this AccountCreateRequest accountCreateRequest)
         {
