@@ -20,12 +20,12 @@ namespace LangBuddy.Accounts.Database.Entity.Common
 
         public void SeDeleteTime()
         {
-            CreateDate = DateTime.UtcNow;
+            DeleteDate = DateTime.UtcNow;
         }
 
         public void SetUpdateTime()
         {
-            CreateDate = DateTime.UtcNow;
+            UpdateDate = DateTime.UtcNow;
         }
 
     }
