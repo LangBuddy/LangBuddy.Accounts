@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LangBuddy.Accounts.Database\LangBuddy.Accounts.Database.csproj" />
+    <ProjectReference Include="..\LangBuddy.Accounts.Models\LangBuddy.Accounts.Models.csproj" />
+  </ItemGroup>
+
 </Project>
