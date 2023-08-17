@@ -17,5 +17,16 @@ namespace LangBuddy.Accounts.Database.Entity.Common
         {
             CreateDate = DateTime.UtcNow;
         }
+
+        public void SeDeleteTime()
+        {
+            CreateDate = DateTime.UtcNow;
+        }
+
+        public void SetUpdateTime()
+        {
+            CreateDate = DateTime.UtcNow;
+        }
+
     }
 }
