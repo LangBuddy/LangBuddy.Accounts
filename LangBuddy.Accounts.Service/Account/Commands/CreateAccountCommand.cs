@@ -8,32 +8,23 @@ namespace LangBuddy.Accounts.Service.Account.Commands
     public class CreateAccountCommand : ICreateAccountCommand
     {
         private readonly AccountsDbContext _accountsDbContext;
-        private readonly IGetAccountByEmailCommand _getAccountByEmailCommand;
-        private readonly IGetAccountByNicknameCommand _getAccountByNicknameCommand;
+        private readonly ICheckingEmailCommand _checkingEmailCommand;
+        private readonly ICheckingNicknameCommand _checkingNicknameCommand;
 
         public CreateAccountCommand(AccountsDbContext accountsDbContext,
-            IGetAccountByEmailCommand getAccountByEmailCommand,
-            IGetAccountByNicknameCommand getAccountByNicknameCommand)
+            ICheckingEmailCommand checkingEmailCommand,
+            ICheckingNicknameCommand checkingNicknameCommand)
         {
             _accountsDbContext = accountsDbContext;
-            _getAccountByEmailCommand = getAccountByEmailCommand;
-            _getAccountByNicknameCommand = getAccountByNicknameCommand;
+            _checkingEmailCommand = checkingEmailCommand;
+            _checkingNicknameCommand = checkingNicknameCommand;
         }
 
         public async Task<int> Invoke(AccountCreateRequest accountCreateRequest)
         {
-            var accountByEmail = await _getAccountByEmailCommand.Invoke(accountCreateRequest.Email);
-            var accountByNickname = await _getAccountByNicknameCommand.Invoke(accountCreateRequest.Nickname);
+            await _checkingEmailCommand.Invoke(accountCreateRequest.Email);
 
-            if(accountByEmail != null) 
-            {
-                throw new ArgumentException("Email is already in use");
-            }
-
-            if (accountByNickname != null)
-            {
-                throw new ArgumentException("Nickname is already in use");
-            }
+            await _checkingNicknameCommand.Invoke(accountCreateRequest.Nickname);
 
             var account = accountCreateRequest.ToModel();
             account.SetCreateTime();
