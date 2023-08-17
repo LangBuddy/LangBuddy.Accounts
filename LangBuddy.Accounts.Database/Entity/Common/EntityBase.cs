@@ -12,5 +12,10 @@ namespace LangBuddy.Accounts.Database.Entity.Common
         public DateTime CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; } = null;
         public DateTime? DeleteDate { get; set; } = null;
+
+        public void SetCreateTime()
+        {
+            CreateDate = DateTime.UtcNow;
+        }
     }
 }
