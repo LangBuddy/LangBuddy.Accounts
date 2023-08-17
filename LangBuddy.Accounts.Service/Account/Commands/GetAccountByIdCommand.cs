@@ -8,7 +8,7 @@ namespace LangBuddy.Accounts.Service.Account.Commands
     {
         private readonly AccountsDbContext _accountsDbContext;
 
-        private GetAccountByIdCommand(AccountsDbContext accountsDbContext)
+        public GetAccountByIdCommand(AccountsDbContext accountsDbContext)
         {
             _accountsDbContext = accountsDbContext;
         }
