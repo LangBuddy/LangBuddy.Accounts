@@ -69,5 +69,19 @@ namespace LangBuddy.Accounts.Web.Controllers
                 return UnprocessableEntity(ex.Message);
             }
         }
+
+        [HttpGet("password/{email}")]
+        public async Task<IActionResult> GetPasswordHash([FromRoute] string email)
+        {
+            try
+            {
+                var res = await _accountService.GetPasswordHash(email);
+                return Ok(res);
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }
