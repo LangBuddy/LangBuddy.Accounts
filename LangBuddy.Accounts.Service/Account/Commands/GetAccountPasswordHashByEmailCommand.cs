@@ -5,16 +5,22 @@ namespace LangBuddy.Accounts.Service.Account.Commands
 {
     public class GetAccountPasswordHashByEmailCommand : IGetAccountPasswordHashByEmailCommand
     {
-        private readonly ICheckingEmailCommand _checkingEmailCommand;
+        private readonly IGetAccountByEmailCommand _getAccountByEmailCommand;
 
-        public GetAccountPasswordHashByEmailCommand(ICheckingEmailCommand checkingEmailCommand)
+        public GetAccountPasswordHashByEmailCommand(IGetAccountByEmailCommand getAccountByEmailCommand)
         {
-            _checkingEmailCommand = checkingEmailCommand;
+            _getAccountByEmailCommand = getAccountByEmailCommand;
         }
 
         public async Task<Models.Dto.AccountPasswordHashDto> Invoke(string email)
         {
-            var res = await _checkingEmailCommand.Invoke(email);
+            var res = await _getAccountByEmailCommand.Invoke(email);
+
+            if (res == null)
+            {
+                throw new ArgumentException("Email is not already in use");
+            }
+
             return res.ToAccountPasswordHashDto();
         }
     }
