@@ -2,6 +2,6 @@
 {
     public interface ICheckingEmailCommand
     {
-        Task Invoke(string email);
+        Task<Database.Entity.Account?> Invoke(string email);
     }
 }
