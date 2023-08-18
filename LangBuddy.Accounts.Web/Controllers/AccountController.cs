@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LangBuddy.Accounts.Web.Controllers
 {
-    [Route("controller")]
+    [Route("[controller]")]
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
