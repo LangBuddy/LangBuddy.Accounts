@@ -11,7 +11,7 @@ namespace LangBuddy.Accounts.Service.Account.Commands
             _getAccountByEmailCommand = getAccountByEmailCommand;
         }
 
-        public async Task Invoke(string email)
+        public async Task<Database.Entity.Account?> Invoke(string email)
         {
             var accountByEmail = await _getAccountByEmailCommand.Invoke(email);
 
@@ -19,6 +19,8 @@ namespace LangBuddy.Accounts.Service.Account.Commands
             {
                 throw new ArgumentException("Email is already in use");
             }
+
+            return accountByEmail;
         }
     }
 }
