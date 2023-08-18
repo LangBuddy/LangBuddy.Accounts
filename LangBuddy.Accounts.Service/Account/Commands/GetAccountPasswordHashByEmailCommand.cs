@@ -3,11 +3,11 @@ using LangBuddy.Accounts.Service.Account.Common;
 
 namespace LangBuddy.Accounts.Service.Account.Commands
 {
-    public class AccountPasswordHashByEmailCommand : IAccountPasswordHashByEmailCommand
+    public class GetAccountPasswordHashByEmailCommand : IGetAccountPasswordHashByEmailCommand
     {
         private readonly ICheckingEmailCommand _checkingEmailCommand;
 
-        public AccountPasswordHashByEmailCommand(ICheckingEmailCommand checkingEmailCommand)
+        public GetAccountPasswordHashByEmailCommand(ICheckingEmailCommand checkingEmailCommand)
         {
             _checkingEmailCommand = checkingEmailCommand;
         }
