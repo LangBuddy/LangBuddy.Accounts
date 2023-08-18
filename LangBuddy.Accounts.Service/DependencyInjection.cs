@@ -21,6 +21,7 @@ namespace LangBuddy.Accounts.Service
             services.AddTransient<IDeleteAccountByIdCommand, DeleteAccountByIdCommand>();
             services.AddTransient<IUpdateAccountCommand, UpdateAccountCommand>();
             services.AddTransient<IGetAllAccountsCommand, GetAllAccountsCommand>();
+            services.AddTransient<IGetAccountPasswordHashByEmailCommand,  GetAccountPasswordHashByEmailCommand>();
 
             services.AddTransient<IAccountService, AccountService>();
 
