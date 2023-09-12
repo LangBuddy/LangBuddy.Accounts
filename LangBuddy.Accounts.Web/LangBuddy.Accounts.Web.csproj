@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LangBuddy.Accounts.Database\LangBuddy.Accounts.Database.csproj" />
     <ProjectReference Include="..\LangBuddy.Accounts.Service\LangBuddy.Accounts.Service.csproj" />
   </ItemGroup>
 
