@@ -1,4 +1,5 @@
-﻿using LangBuddy.Accounts.Service.Account;
+﻿using LangBuddy.Accounts.Database;
+using LangBuddy.Accounts.Service.Account;
 using LangBuddy.Accounts.Service.Account.Commands;
 using LangBuddy.Accounts.Service.Account.Common;
 using LangBuddy.Accounts.Service.Validators;
@@ -11,6 +12,8 @@ namespace LangBuddy.Accounts.Service
     {
         public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDatabase(configuration);
+
             services.AddScoped<AccountCreateRequestValidator>();
             services.AddScoped<AccountUpdateRequestValidator>();
 
