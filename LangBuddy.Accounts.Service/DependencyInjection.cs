@@ -1,6 +1,7 @@
 ﻿using LangBuddy.Accounts.Service.Account;
 using LangBuddy.Accounts.Service.Account.Commands;
 using LangBuddy.Accounts.Service.Account.Common;
+using LangBuddy.Accounts.Service.Validators;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,9 @@ namespace LangBuddy.Accounts.Service
     {
         public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<AccountCreateRequestValidator>();
+            services.AddScoped<AccountUpdateRequestValidator>();
+
             services.AddTransient<IGetAccountByEmailCommand, GetAccountByEmailCommand>();
             services.AddTransient<IGetAccountByNicknameCommand, GetAccountByNicknameCommand>();
             services.AddTransient<IGetAccountByIdCommand,  GetAccountByIdCommand>();
