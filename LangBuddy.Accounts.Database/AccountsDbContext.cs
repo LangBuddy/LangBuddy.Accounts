@@ -7,7 +7,10 @@ namespace LangBuddy.Accounts.Database
     {
         public DbSet<Account> Accounts { get; set; }
 
-        public AccountsDbContext(DbContextOptions<AccountsDbContext> options) : base(options) { }
+        public AccountsDbContext(DbContextOptions<AccountsDbContext> options) : base(options) 
+        {
+            Database.MigrateAsync();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
