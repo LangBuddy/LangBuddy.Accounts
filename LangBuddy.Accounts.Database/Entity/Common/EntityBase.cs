@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LangBuddy.Accounts.Database.Entity.Common
+﻿namespace LangBuddy.Accounts.Database.Entity.Common
 {
     public abstract class EntityBase
     {
