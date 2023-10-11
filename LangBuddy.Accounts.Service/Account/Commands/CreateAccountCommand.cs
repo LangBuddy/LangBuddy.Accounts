@@ -1,7 +1,7 @@
 ﻿using LangBuddy.Accounts.Database;
-using LangBuddy.Accounts.Models.Mappers;
 using LangBuddy.Accounts.Models.Request;
 using LangBuddy.Accounts.Service.Account.Common;
+using LangBuddy.Accounts.Service.Mappers;
 
 namespace LangBuddy.Accounts.Service.Account.Commands
 {
