@@ -10,8 +10,4 @@
     <PackageReference Include="Mapster" Version="7.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LangBuddy.Accounts.Database\LangBuddy.Accounts.Database.csproj" />
-  </ItemGroup>
-
 </Project>
