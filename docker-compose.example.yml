@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  accounts-db:
+    image: postgres:latest
+    restart: always
+    container_name: 'accounts-db'
+    environment:
+      POSTGRES_USER: *
+      POSTGRES_PASSWORD: *
+      POSTGRES_DB: *
+    ports:
+      - *
+    networks:
+      - accounts-deb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  accounts-api:
+    container_name: 'accounts-api'
+    depends_on:
+      - "accounts-db"
+    build:
+      dockerfile: LangBuddy.Accounts.Web/Dockerfile
+      context: .
+    ports:
+      - *
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - LOGS_PATH=/var/log/dev-accounts-api
+    networks:
+      - accounts-deb
+      - lang-buddy
+
+volumes:
+  postgres-data:
+
+networks:
+  accounts-deb: {
+    driver: bridge
+  }
+  lang-buddy:
+    external: true
