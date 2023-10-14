@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace LangBuddy.Accounts.Web.Controllers
 {
     [Route("[controller]")]
-    public class AccountController : ControllerBase
+    public class AccountsController : ControllerBase
     {
-        private readonly IAccountService _accountService;
+        private readonly IAccountsService _accountService;
 
-        public AccountController(IAccountService accountService)
+        public AccountsController(IAccountsService accountService)
         {
             _accountService = accountService;
         }
@@ -33,8 +33,8 @@ namespace LangBuddy.Accounts.Web.Controllers
         {
             try
             {
-                var res = await _accountService.Create(accountCreateRequest);
-                return Ok(res);
+                await _accountService.Create(accountCreateRequest);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -47,8 +47,8 @@ namespace LangBuddy.Accounts.Web.Controllers
         {
             try
             {
-                var res = await _accountService.Update(id, accountUpdateRequest);
-                return Ok(res);
+                await _accountService.Update(id, accountUpdateRequest);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -61,8 +61,8 @@ namespace LangBuddy.Accounts.Web.Controllers
         {
             try
             {
-                var res = await _accountService.Delete(id);
-                return Ok(res);
+                await _accountService.Delete(id);
+                return Ok();
             }
             catch (Exception ex)
             {
