@@ -5,7 +5,7 @@ using MediatR;
 
 namespace LangBuddy.Accounts.Service.Account.Commands
 {
-    public class DeleteAccountByIdHandler : IRequestHandler<DeleteAccountByIdCommand>
+    public class DeleteAccountByIdHandler : IRequestHandler<DeleteAccountByIdCommand, long>
     {
         private readonly AccountsDbContext _accountsDbContext;
         private readonly IMediator _mediator;
@@ -16,7 +16,7 @@ namespace LangBuddy.Accounts.Service.Account.Commands
             _mediator = mediator;
         }
 
-        public async Task Handle(DeleteAccountByIdCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(DeleteAccountByIdCommand request, CancellationToken cancellationToken)
         {
             var account = await _mediator.Send(new GetAccountByIdQuery(request.Id));
 
@@ -25,6 +25,8 @@ namespace LangBuddy.Accounts.Service.Account.Commands
             _accountsDbContext.Update(account);
 
             await _accountsDbContext.SaveChangesAsync();
+
+            return account.Id;
         }
     }
 }

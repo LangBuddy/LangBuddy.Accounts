@@ -2,7 +2,7 @@
 
 namespace LangBuddy.Accounts.Models.Commands
 {
-    public class UpdateAccountCommand : IRequest
+    public class UpdateAccountCommand : IRequest<long>
     {
         public long Id { get; set; }
         public string? Email { get; set; }

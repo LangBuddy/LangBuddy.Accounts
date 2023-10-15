@@ -1,17 +1,18 @@
 ﻿using LangBuddy.Accounts.Models.Request;
+using LangBuddy.Accounts.Models.Responses;
 
 namespace LangBuddy.Accounts.Service.Account.Common
 {
     public interface IAccountsService
     {
-        Task<IEnumerable<Database.Entity.Account>> GetAll();
+        Task<HttpResponse> GetAll();
 
-        Task Create(AccountCreateRequest accountCreateRequest);
+        Task<HttpResponse> Create(AccountCreateRequest accountCreateRequest);
 
-        Task Delete(long id);
+        Task<HttpResponse> Delete(long id);
 
-        Task Update(long id, AccountUpdateRequest accountUpdateRequest);
+        Task<HttpResponse> Update(long id, AccountUpdateRequest accountUpdateRequest);
 
-        Task<Models.Dto.AccountPasswordHashResponse> GetPasswordHash(string email);
+        Task<HttpResponse> GetPasswordHash(string email);
     }
 }

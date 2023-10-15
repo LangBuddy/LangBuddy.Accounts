@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace LangBuddy.Accounts.Models.Commands
 {
-    public record DeleteAccountByIdCommand(long Id): IRequest;
+    public record DeleteAccountByIdCommand(long Id): IRequest<long>;
 }

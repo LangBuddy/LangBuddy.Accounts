@@ -6,7 +6,7 @@ using MediatR;
 
 namespace LangBuddy.Accounts.Service.Account.Commands
 {
-    public class CreateAccountHandler : IRequestHandler<CreateAccountCommand>
+    public class CreateAccountHandler : IRequestHandler<CreateAccountCommand, long>
     {
         private readonly AccountsDbContext _accountsDbContext;
         private readonly IMediator _mediator;
@@ -17,7 +17,7 @@ namespace LangBuddy.Accounts.Service.Account.Commands
             _accountsDbContext = accountsDbContext;
             _mediator = mediator;
         }
-        public async Task Handle(CreateAccountCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
         {
             await _mediator.Send(new GetHasEmailQuery(request.Email));
 
@@ -26,9 +26,11 @@ namespace LangBuddy.Accounts.Service.Account.Commands
             var account = request.ToModel();
             account.SetCreateTime();
 
-            await _accountsDbContext.Accounts.AddAsync(account);
+            var res = await _accountsDbContext.Accounts.AddAsync(account);
 
             await _accountsDbContext.SaveChangesAsync();
+
+            return res.Entity.Id;
         }
     }
 }

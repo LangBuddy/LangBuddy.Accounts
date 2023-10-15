@@ -5,7 +5,7 @@ using MediatR;
 
 namespace LangBuddy.Accounts.Service.Account.Commands
 {
-    public class UpdateAccountHandler : IRequestHandler<UpdateAccountCommand>
+    public class UpdateAccountHandler : IRequestHandler<UpdateAccountCommand, long>
     {
         private readonly IMediator _mediator;
         private readonly AccountsDbContext _accountsDbContext;
@@ -16,7 +16,7 @@ namespace LangBuddy.Accounts.Service.Account.Commands
             _accountsDbContext = accountsDbContext;
         }
 
-        public async Task Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
+        public async Task<long> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
         {
             var account = await _mediator.Send(new GetAccountByIdQuery(request.Id));
 
@@ -44,6 +44,8 @@ namespace LangBuddy.Accounts.Service.Account.Commands
             _accountsDbContext.Update(account);
 
             await _accountsDbContext.SaveChangesAsync();
+
+            return account.Id;
         }
     }
 }

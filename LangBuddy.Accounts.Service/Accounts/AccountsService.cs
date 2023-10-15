@@ -2,6 +2,7 @@
 using LangBuddy.Accounts.Models.Commands;
 using LangBuddy.Accounts.Models.Queries;
 using LangBuddy.Accounts.Models.Request;
+using LangBuddy.Accounts.Models.Responses;
 using LangBuddy.Accounts.Service.Account.Common;
 using LangBuddy.Accounts.Service.Mappers;
 using LangBuddy.Accounts.Service.Validators;
@@ -23,13 +24,17 @@ namespace LangBuddy.Accounts.Service.Account
             _mediator = mediator;
         }
 
-        public async Task<IEnumerable<Database.Entity.Account>> GetAll()
+        public async Task<HttpResponse> GetAll()
         {
+            var res = await _mediator.Send(new GetAllAccountsQuery());
 
-            return await _mediator.Send(new GetAllAccountsQuery());
+            return new HttpResponse(true, "Successfully get", new
+            {
+                Accounts = res.ToArray()
+            });
         }
 
-        public async Task Create(AccountCreateRequest accountCreateRequest)
+        public async Task<HttpResponse> Create(AccountCreateRequest accountCreateRequest)
         {
             var validResult = await _accountCreateRequestValidator.ValidateAsync(accountCreateRequest);
 
@@ -38,15 +43,25 @@ namespace LangBuddy.Accounts.Service.Account
                 throw new ValidationException(validResult.Errors);
             }
 
-            await _mediator.Send(accountCreateRequest.ToCommand());
+            var res = await _mediator.Send(accountCreateRequest.ToCommand());
+
+            return new HttpResponse(true, "Successfully created", new
+            {
+                Id = res
+            });
         }
 
-        public async Task Delete(long id)
+        public async Task<HttpResponse> Delete(long id)
         {
-            await _mediator.Send(new DeleteAccountByIdCommand(id));
+            var res = await _mediator.Send(new DeleteAccountByIdCommand(id));
+
+            return new HttpResponse(true, "Successfully deleted", new
+            {
+                Id = res
+            });
         }
 
-        public async Task Update(long id, AccountUpdateRequest accountUpdateRequest)
+        public async Task<HttpResponse> Update(long id, AccountUpdateRequest accountUpdateRequest)
         {
             var validResult = await _accountUpdateRequestValidator.ValidateAsync(accountUpdateRequest);
 
@@ -55,10 +70,15 @@ namespace LangBuddy.Accounts.Service.Account
                 throw new ValidationException(validResult.Errors);
             }
 
-            await _mediator.Send(accountUpdateRequest.ToCommand(id));
+            var res = await _mediator.Send(accountUpdateRequest.ToCommand(id));
+
+            return new HttpResponse(true, "Successfully updated", new
+            {
+                Id = res
+            });
         }
 
-        public async Task<Models.Dto.AccountPasswordHashResponse> GetPasswordHash(string email)
+        public async Task<HttpResponse> GetPasswordHash(string email)
         {
             var validResult = await _accountCreateRequestValidator.ValidateAsync(
                 new AccountCreateRequest(email, "1", new byte[] { 1 }, new byte[] { 1 }));
@@ -68,7 +88,12 @@ namespace LangBuddy.Accounts.Service.Account
                 throw new ValidationException(validResult.Errors);
             }
 
-            return await _mediator.Send(new GetAccountPasswordHashByEmailQuery(email));
+            var res = await _mediator.Send(new GetAccountPasswordHashByEmailQuery(email));
+
+            return new HttpResponse(true, "Successfully updated", new
+            {
+                AccountPasswordHash = res
+            });
         }
     }
 }
