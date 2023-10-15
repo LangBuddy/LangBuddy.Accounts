@@ -28,10 +28,7 @@ namespace LangBuddy.Accounts.Service.Account
         {
             var res = await _mediator.Send(new GetAllAccountsQuery());
 
-            return new HttpResponse(true, "Successfully get", new
-            {
-                Accounts = res.ToArray()
-            });
+            return new HttpResponse(true, "Successfully get", res.ToArray());
         }
 
         public async Task<HttpResponse> Create(AccountCreateRequest accountCreateRequest)
@@ -90,10 +87,7 @@ namespace LangBuddy.Accounts.Service.Account
 
             var res = await _mediator.Send(new GetAccountPasswordHashByEmailQuery(email));
 
-            return new HttpResponse(true, "Successfully updated", new
-            {
-                AccountPasswordHash = res
-            });
+            return new HttpResponse(true, "Successfully updated", res);
         }
     }
 }

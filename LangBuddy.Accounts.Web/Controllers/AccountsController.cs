@@ -25,7 +25,7 @@ namespace LangBuddy.Accounts.Web.Controllers
             catch(Exception ex)
             {
                 return NotFound(new Models.Responses.HttpResponse(
-                    false, "Found Error", ex.Message
+                    false, $"Found Error. {ex.Message}", null
                 )); ;
             }
         }
@@ -41,7 +41,7 @@ namespace LangBuddy.Accounts.Web.Controllers
             catch (Exception ex)
             {
                 return UnprocessableEntity(new Models.Responses.HttpResponse(
-                    false, "Creation error", ex.Message
+                    false, $"Creation error. {ex.Message}", null
                 ));
             }
         }
@@ -57,7 +57,7 @@ namespace LangBuddy.Accounts.Web.Controllers
             catch (Exception ex)
             {
                 return UnprocessableEntity(new Models.Responses.HttpResponse(
-                    false, "Update error", ex.Message
+                    false, $"Update error. {ex.Message}", null
                 ));
             }
         }
@@ -73,7 +73,7 @@ namespace LangBuddy.Accounts.Web.Controllers
             catch (Exception ex)
             {
                 return UnprocessableEntity(new Models.Responses.HttpResponse(
-                    false, "Deleting error", ex.Message
+                    false, $"Deleting error. {ex.Message}", null
                 ));
             }
         }
@@ -89,7 +89,7 @@ namespace LangBuddy.Accounts.Web.Controllers
             catch(Exception ex)
             {
                 return NotFound(new Models.Responses.HttpResponse(
-                    false, "Get PasswordHash error", ex.Message
+                    false, $"Get PasswordHash error. {ex.Message}", null
                 ));
             }
         }
