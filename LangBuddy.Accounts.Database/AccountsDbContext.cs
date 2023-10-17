@@ -15,6 +15,13 @@ namespace LangBuddy.Accounts.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Account>(entity =>
+            {
+                entity.HasIndex(e => e.UserId).IsUnique();
+                entity.HasIndex(e => e.Email).IsUnique();
+                entity.HasIndex(e => e.Nickname).IsUnique();
+            });
         }
     }
 }
