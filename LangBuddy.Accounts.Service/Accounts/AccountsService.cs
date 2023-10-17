@@ -78,7 +78,7 @@ namespace LangBuddy.Accounts.Service.Account
         public async Task<HttpResponse> GetPasswordHash(string email)
         {
             var validResult = await _accountCreateRequestValidator.ValidateAsync(
-                new AccountCreateRequest(email, "1", new byte[] { 1 }, new byte[] { 1 }));
+                new AccountCreateRequest(email, "1", new byte[] { 1 }, new byte[] { 1 }, null));
 
             if (!validResult.IsValid)
             {
