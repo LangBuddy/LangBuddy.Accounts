@@ -9,5 +9,6 @@ namespace LangBuddy.Accounts.Models.Commands
         public string? Nickname { get; set; }
         public byte[]? PasswordSalt { get; set; }
         public byte[]? PasswordHash { get; set; }
+        public long? UserId { get; set; }
     }
 }
