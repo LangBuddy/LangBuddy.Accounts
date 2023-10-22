@@ -30,6 +30,22 @@ namespace LangBuddy.Accounts.Web.Controllers
             }
         }
 
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetAccountByEmail([FromRoute] string email)
+        {
+            try
+            {
+                var res = await _accountService.GetByEmail(email);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new Models.Responses.HttpResponse(
+                    false, $"Error Get Account. {ex.Message}", null
+                ));
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAccount([FromBody] AccountCreateRequest accountCreateRequest)
         {

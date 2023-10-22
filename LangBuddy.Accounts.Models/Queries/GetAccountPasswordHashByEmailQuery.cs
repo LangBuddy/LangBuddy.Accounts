@@ -1,4 +1,4 @@
-﻿using LangBuddy.Accounts.Models.Dto;
+﻿using LangBuddy.Accounts.Models.Responses;
 using MediatR;
 
 namespace LangBuddy.Accounts.Models.Queries

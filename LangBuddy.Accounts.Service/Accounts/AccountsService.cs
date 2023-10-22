@@ -31,6 +31,13 @@ namespace LangBuddy.Accounts.Service.Account
             return new HttpResponse(true, "Successfully get", res.ToArray());
         }
 
+        public async Task<HttpResponse> GetByEmail(string email)
+        {
+            var res = await _mediator.Send(new GetAccountByEmailQuery(email));
+
+            return new HttpResponse(true, "Successfully get", res.ToResponse());
+        }
+
         public async Task<HttpResponse> Create(AccountCreateRequest accountCreateRequest)
         {
             var validResult = await _accountCreateRequestValidator.ValidateAsync(accountCreateRequest);

@@ -1,4 +1,4 @@
-﻿using LangBuddy.Accounts.Models.Dto;
+﻿using LangBuddy.Accounts.Models.Responses;
 using LangBuddy.Accounts.Models.Queries;
 using LangBuddy.Accounts.Service.Mappers;
 using MediatR;

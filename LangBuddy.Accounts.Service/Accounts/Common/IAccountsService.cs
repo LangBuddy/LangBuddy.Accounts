@@ -7,6 +7,8 @@ namespace LangBuddy.Accounts.Service.Account.Common
     {
         Task<HttpResponse> GetAll();
 
+        Task<HttpResponse> GetByEmail(string email);
+
         Task<HttpResponse> Create(AccountCreateRequest accountCreateRequest);
 
         Task<HttpResponse> Delete(long id);

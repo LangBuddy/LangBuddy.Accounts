@@ -39,6 +39,11 @@ namespace LangBuddy.Accounts.Service.Account.Commands
                 account.PasswordSalt = request.PasswordSalt;
             }
 
+            if (request.UserId != null)
+            {
+                account.UserId = request.UserId;
+            }
+
             account.SetUpdateTime();
 
             _accountsDbContext.Update(account);

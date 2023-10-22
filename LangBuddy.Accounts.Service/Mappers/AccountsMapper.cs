@@ -1,6 +1,6 @@
 ﻿using LangBuddy.Accounts.Models.Commands;
-using LangBuddy.Accounts.Models.Dto;
 using LangBuddy.Accounts.Models.Request;
+using LangBuddy.Accounts.Models.Responses;
 using Mapster;
 
 namespace LangBuddy.Accounts.Service.Mappers
@@ -32,6 +32,11 @@ namespace LangBuddy.Accounts.Service.Mappers
             var updateAccountCommand = accountCreateRequest.Adapt<UpdateAccountCommand>();
             updateAccountCommand.Id = id;
             return updateAccountCommand;
+        }
+
+        public static AccountResponse ToResponse(this Database.Entity.Account account)
+        {
+            return account.Adapt<AccountResponse>();
         }
     }
 }
